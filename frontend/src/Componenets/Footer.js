@@ -16,26 +16,12 @@ const Footer = () => {
       >
         <i className="fab fa-facebook-f" />
       </a>
-      {/* Twitter */}
-      <a
-        className="btn btn-outline-light btn-floating m-1"
-        href="#!"
-        role="button"
-      >
-        <i className="fab fa-twitter" />
-      </a>
-      {/* Google */}
-      <a
-        className="btn btn-outline-light btn-floating m-1"
-        href="#!"
-        role="button"
-      >
-        <i className="fab fa-google" />
-      </a>
+      
+     
       {/* Instagram */}
       <a
         className="btn btn-outline-light btn-floating m-1"
-        href="#!"
+        href=" https://www.instagram.com/invites/contact/?i=njjqgzkbrur2&utm_content=8rh67ja"
         role="button"
       >
         <i className="fab fa-instagram" />
@@ -43,7 +29,7 @@ const Footer = () => {
       {/* Linkedin */}
       <a
         className="btn btn-outline-light btn-floating m-1"
-        href="#!"
+        href="https://www.linkedin.com/in/akash-maurya-8747a8229/"
         role="button"
       >
         <i className="fab fa-linkedin-in" />
@@ -51,7 +37,7 @@ const Footer = () => {
       {/* Github */}
       <a
         className="btn btn-outline-light btn-floating m-1"
-        href="#!"
+        href="https://github.com/Akash-maurya1"
         role="button"
       >
         <i className="fab fa-github" />
@@ -65,9 +51,9 @@ const Footer = () => {
     className="text-center p-3"
     style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
   >
-    © 2020 Copyright:
+    © 2023 Copyright:
     <a className="text-white" href="https://mdbootstrap.com/">
-      MDBootstrap.com
+      Akash.com
     </a>
   </div>
   {/* Copyright */}

@@ -1,3 +1,4 @@
+import { Formik } from 'formik';
 import React from 'react';
 
 
@@ -14,78 +15,62 @@ const Login = () => {
         'Content-Type' : 'application/json'
       }
     });
-
-    if(response.status === 200){
-      Swal.fire({
-        icon : 'success',
-        title : 'Success',
-        text : 'Loggedin Successfully'
-      })
-    }else if(response.status === 401){
-      Swal.fire({
-        icon : 'error',
-        title : 'Failed',
-        text : 'Loggedin Failed'
-      })
-    }else{
-      console.log('unknown error occured');
-    }
-
   }
 
 
   return (
     <>
-      <section className="vh-100">
+      <section className="vh-100 login-bg pt-5">
         <div className="container-fluid h-custom">
+        <div className='card'>
+          <div className='card-body'>
+
           <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-md-9 col-lg-6 col-xl-5">
+          <div className="col-md-9 col-lg-6 col-xl-5">
               <img
                 src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                 className="img-fluid"
                 alt="Sample image"
               />
             </div>
+            
             <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-              <form>
-                <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                  <p className="lead fw-normal mb-0 me-3">Sign in with</p>
-                  <button type="button" className="btn btn-primary btn-floating mx-1">
-                    <i className="fab fa-facebook-f" />
-                  </button>
-                  <button type="button" className="btn btn-primary btn-floating mx-1">
-                    <i className="fab fa-twitter" />
-                  </button>
-                  <button type="button" className="btn btn-primary btn-floating mx-1">
-                    <i className="fab fa-linkedin-in" />
-                  </button>
-                </div>
-                <div className="divider d-flex align-items-center my-4">
-                  <p className="text-center fw-bold mx-3 mb-0">Or</p>
-                </div>
+            <Formik initialValues={{ email: "", password: "" }} onSubmit={loginSubmit} 
+            
+            >
+            {({ values, handleChange, handleSubmit, isSubmitting, errors }) => (
+              <form onSubmit={handleSubmit}>
                 {/* Email input */}
+                <div className='container'>
+                  <div className='card'>
+                    <div className='card-body' style={{backgroundColor : ""}}>
                 <div className="form-outline mb-4">
-                  <input
-                    type="email"
-                    id="form3Example3"
-                    className="form-control form-control-lg"
-                    placeholder="Enter a valid email address"
-                  />
-                  <label className="form-label" htmlFor="form3Example3">
+                <h1>Login</h1>
+
+                <label>
                     Email address
                   </label>
+                  <br />
+                  <input
+                    type="email"
+                     className=""
+                    placeholder="Enter a valid email address"
+                  />
+                  
                 </div>
                 {/* Password input */}
-                <div className="form-outline mb-3">
-                  <input
-                    type="password"
-                    id="form3Example4"
-                    className="form-control form-control-lg"
-                    placeholder="Enter password"
-                  />
-                  <label className="form-label" htmlFor="form3Example4">
+                <div className="form-outline mb-4">
+                <label className="form-label" htmlFor="form3Example4">
                     Password
                   </label>
+                  <br/>
+                  <input
+                    type="password"
+                    className=""
+                    placeholder="Enter password"
+                  />
+                  
+                  
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
                   {/* Checkbox */}
@@ -100,7 +85,7 @@ const Login = () => {
                       Remember me
                     </label>
                   </div>
-                  <a href="#!" className="text-body">
+                  <a href="/ForgotPassword" className="text-body">
                     Forgot password?
                   </a>
                 </div>
@@ -119,33 +104,17 @@ const Login = () => {
                     </a>
                   </p>
                 </div>
+                </div>
+                </div>
+                </div>
               </form>
+               )}
+               </Formik>
             </div>
           </div>
-        </div>
-        <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-          {/* Copyright */}
-          <div className="text-white mb-3 mb-md-0">
-            Copyright © 2020. All rights reserved.
           </div>
-          {/* Copyright */}
-          {/* Right */}
-          <div>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-facebook-f" />
-            </a>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-twitter" />
-            </a>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-google" />
-            </a>
-            <a href="#!" className="text-white">
-              <i className="fab fa-linkedin-in" />
-            </a>
           </div>
-          {/* Right */}
-        </div>
+        </div> 
       </section>
     </>
 

@@ -1,127 +1,95 @@
-import React from 'react';
-import {Formik} from 'formik';
+import { Formik } from "formik";
+import React from "react";
+import * as Yup from "yup";
+import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 const Signup = () => {
+  
+  
+  
+  
+  // step-1 : create function for submission
+  const userSubmit = async (formdata, { resetForm, setSubmitting }) => {
+    setSubmitting(true)
 
+    // setTimeout(() => {
+      console.log(formdata)
 
+      // for sending request to backend
+      // 1. url
+      // 2. request method
+      // 3. data
+      // 4. data format - json
 
+      // returns promise
+      const response = await fetch('http://localhost:5000/user/add', {
+        method: 'POST',
+        body : JSON.stringify(formdata),
+        headers: {
+          'Content-Type' : 'application/json'
+        }
+      });
+
+      // reading response status
+      console.log(response.status);
+
+      if(response.status === 200){
+
+        Swal.fire({
+          icon : 'success',
+          title : 'Registered',
+          text : 'User registered successfully'
+        })
+
+      }
+
+      setSubmitting(false)
+      resetForm()
+    // }, 2000)
+  }
+
+  const myValidation = Yup.object().shape({
+    username: Yup.string().min(3, "Too short").max(10, "Too Long").required("Username Required"),
+  })
 
   return (
-    <section className="vh-100" style={{ backgroundColor: "#508bfc" }}>
-      <div className="container py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div className="card shadow-2-strong" style={{ borderRadius: "1rem" }}>
-              <div className="card-body p-5 text-center">
-                <h3 className="mb-5">Sign in</h3>
-                <Formik 
-                  initialValues={{username : ''}}
-                  onSubmit={userSubmit}
-                >
-                  { ({values, handleSubmit, handleChange}) => (
-                    <form onSubmit={handleSubmit}>
-                    <div className="form-outline mb-4">
-                    <input
-                      type="email"
-                      id="email"
-                      value={values.email}
-                      onChange={handleChange}
-                      className="form-control form-control-lg"
-                    />
-                    <label className="form-label" htmlFor="typeEmailX-2">
-                      Email
-                    </label>
-                  </div>
-                    <div className="form-outline mb-4">
-                    <input
-                      type="text"
-                      id="username"
-                      value={values.username}
-                      onChange={handleChange}
-                      className="form-control form-control-lg"
-                    />
-                    <label className="form-label" htmlFor="typeEmailX-2">
-                      UserName
-                    </label>
-                  </div>
-                  <div className="form-outline mb-4">
-                    <input
-                      type="text"
-                      id="mobileno."
-                      value={values.email}
-                      onChange={handleChange}
-                      className="form-control form-control-lg"
-                    />
-                    <label className="form-label" htmlFor="typeEmailX-2">
-                      Mobileno.
-                    </label>
-                  </div>
-                  <div className="form-outline mb-4">
-                    <input
-                      type="text"
-                      id="age"
-                      value={values.email}
-                      onChange={handleChange}
-                      className="form-control form-control-lg"
-                    />
-                    <label className="form-label" htmlFor="typeEmailX-2">
-                      age
-                    </label>
-                  </div>
-                  <div className="form-outline mb-4">
-                    <input
-                      type="password"
-                      id="typePasswordX-2"
-                      className="form-control form-control-lg"
-                    />
-                    <label className="form-label" htmlFor="typePasswordX-2">
-                      Password
-                    </label>
-                  </div>
-                  {/* Checkbox */}
-                  <div className="form-check d-flex justify-content-start mb-4">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      defaultValue=""
-                      id="form1Example3"
-                    />
-                    <label className="form-check-label" htmlFor="form1Example3">
-                      {" "}
-                      Remember password{" "}
-                    </label>
-                  </div>
-                  <button className="btn btn-primary btn-lg btn-block" type="submit">
-                    Login
-                  </button>
-                    </form>
-                  ) }
-                </Formik>
-                
-                <hr className="my-4" />
-                <button
-                  className="btn btn-lg btn-block btn-primary"
-                  style={{ backgroundColor: "#dd4b39" }}
-                  type="submit"
-                >
-                  <i className="fab fa-google me-2" /> Sign in with google
+    <motion.div
+    
+      initial={{ scale: 0.6, x: "800%", opacity: 0 }}
+      animate={{ scale: 1, x: 0, opacity: 1 }}
+      transition={{ duration: 0.5, type: "spring" }}
+      className=" pt-5 signup-bg">
+        <div className="col-md-6 mx-auto">
+      <div className="card">
+        <div className="card-body">
+          <h3 className="text-center">Signup Here</h3>
+          <Formik initialValues={{ username: "", email: "", password: "" }} onSubmit={userSubmit} validationSchema={myValidation}>
+            {({ values, handleChange, handleSubmit, isSubmitting, errors }) => (
+              <form onSubmit={handleSubmit}>
+                <label>Username</label>
+                <input type="text" className="form-control" name="username" value={values.username} onChange={handleChange} />
+                <p className="mb-3 message">{errors.username}</p>
+
+                <label>Email</label>
+                <input type="text" className="form-control" name="email" value={values.email} onChange={handleChange} />
+                <p className="mb-3 message">{errors.email}</p>
+
+                <label>Password</label>
+                <input type="password" className="form-control" name="password" value={values.password} onChange={handleChange} />
+
+                <button disabled={isSubmitting} type="submit" className="btn btn-primary mt-5">
+                  {isSubmitting ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : ""}
+                  &nbsp;&nbsp;Submit
                 </button>
-                <button
-                  className="btn btn-lg btn-block btn-primary mb-2"
-                  style={{ backgroundColor: "#3b5998" }}
-                  type="submit"
-                >
-                  <i className="fab fa-facebook-f me-2" />
-                  Sign in with facebook
-                </button>
-              </div>
-            </div>
-          </div>
+              </form>
+            )}
+          </Formik>
         </div>
       </div>
-    </section>
-
+      </div>
+    </motion.div>
   )
 }
 
-export default Signup;
+export default Signup

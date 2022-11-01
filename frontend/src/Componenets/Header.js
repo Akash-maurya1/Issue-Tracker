@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -8,15 +9,16 @@ const Header = () => {
     {/* Container wrapper */}
     <div className="container">
       {/* Navbar brand */}
-      <a className="navbar-brand me-2" href="https://mdbgo.com/">
-        <img
-          src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-          height={16}
-          alt="MDB Logo"
-          loading="lazy"
-          style={{ marginTop: "-1px" }}
-        />
-      </a>
+      <a className="navbar-brand mt-lg-0" href="#">
+  <img
+    src="https://issues.joomla.org/images/avatars/joombler.png"
+    height={30}
+    alt="ISSUE LOGO"
+    loading="lazy"
+  />
+</a>
+
+      
       {/* Toggle button */}
       <button
         className="navbar-toggler"
@@ -35,19 +37,21 @@ const Header = () => {
        
         {/* Left links */}
         <div className="d-flex align-items-center">
-          <button type="button" className="btn btn-link px-3 me-2">
+
+          <NavLink to="/login" type="button" className="btn btn-link px-3 me-2">
             Login
-          </button>
-          <button type="button" className="btn btn-primary me-3 ">
-            Sign up for free
-          </button>
-          <a
-            className="btn btn-dark px-3"
-            href="https://github.com/mdbootstrap/mdb-ui-kit"
-            role="button"
-          >
-            <i className="fab fa-github" />
-          </a>
+          </NavLink>
+          <NavLink to="/signup" type="button" className="btn btn-link px-3 me-2">
+            Signup
+          </NavLink>
+          <NavLink to="/manage" type="button" className="btn btn-link px-3 me-2">
+            Manage Issue
+          </NavLink>
+          <NavLink to="/AddIssue" type="button" className="btn btn-link px-3 me-2">
+            Add Issue
+          </NavLink>
+          
+         
         </div>
       </div>
       {/* Collapsible wrapper */}
@@ -60,4 +64,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header ;

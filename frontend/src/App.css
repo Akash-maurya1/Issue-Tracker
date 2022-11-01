@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.message{
+  color: red;
+}
+.signup-bg{
+  background-image: linear-gradient(0deg, #000000bd, #000000c5) , url('https://learn.g2.com/hubfs/software-development.jpg');
+  background-size: cover;
+  height: 100vh;
+}
+
+.login-bg{
+  background-image: url('https://wallpapercave.com/wp/wp9764020.jpg');
+  background-size: cover;
+  height: 100vh;
+}
